@@ -1,0 +1,36 @@
+.form-container {
+    max-width: 500px;                      
+    margin: 40px auto;     
+    background-color: #ffffff;    
+    border: 1px solid #e2e8f0;    
+    border-radius: 12px;           
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1e293b;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid #2563eb;
+    background-color: #ffffff;
+}

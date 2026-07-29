@@ -1,0 +1,29 @@
+.card-emergency {
+    border-left: 5px solid #dc2626;
+}
+
+.card-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.card-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.card-list li:last-child {
+    border-bottom: none;
+}
+
+.card-list span:last-child {
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.card-emergency .card-list li span:last-child {
+    color: #dc2626;
+}
