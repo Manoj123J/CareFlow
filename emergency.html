@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Emergency Helplines & First-Aid — CareFlow</title>
+    <meta name="description" content="Instant access to national emergency assistance numbers and verified first-aid instructions.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Accessible skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sticky Translucent Glass Navigation Bar -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="CareFlow Home">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+                <span class="nav-brand-badge">Companion</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle (44x44px min tap target) -->
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="primary-nav" aria-label="Primary Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="find_care.html" class="nav-link">Find Care</a></li>
+                    <li><a href="camps.html" class="nav-link">Health Camps</a></li>
+                    <li><a href="blood_donors.html" class="nav-link">Blood Donors</a></li>
+                    <li><a href="emergency.html" class="nav-link nav-link--emergency is-active">Emergency</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section" style="padding-top: var(--space-12);">
+            <div class="container">
+                
+                <!-- Header -->
+                <div class="section-header section-header--center">
+                    <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2);">
+                        <h1 class="section-heading" style="color: var(--color-emergency); margin-bottom: 0;">Emergency Helplines</h1>
+                        <span class="badge badge-emergency">24/7 National Helplines</span>
+                    </div>
+                    <p class="section-subheading">
+                        Instant tap-to-call links for emergency services and clear first-aid response guidelines.
+                    </p>
+                </div>
+
+                <!-- Mandatory Emergency Priority Notice -->
+                <div class="alert alert-emergency" style="margin-bottom: var(--space-10); font-size: var(--font-size-body);" role="alert">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <div>
+                        <strong>Call emergency services first.</strong> In life-threatening emergencies, dial the helpline immediately before attempting any first-aid steps.
+                    </div>
+                </div>
+
+                <!-- 3 Tap-to-Call Emergency Helpline Cards -->
+                <div class="emergency-grid">
+                    
+                    <!-- 108 Ambulance -->
+                    <div class="emergency-phone-card">
+                        <div>
+                            <span class="badge badge-emergency" style="margin-bottom: var(--space-2);">Ambulance Service</span>
+                            <div class="emergency-number">108</div>
+                            <div style="font-size: var(--font-size-body); font-weight: 600;">National Ambulance</div>
+                            <p style="font-size: var(--font-size-caption); color: var(--color-text-secondary); margin-top: var(--space-2);">
+                                24/7 emergency medical response and hospital transport across India.
+                            </p>
+                        </div>
+                        <a href="tel:108" class="btn btn-emergency btn-lg btn-full" aria-label="Call 108 Ambulance">
+                            <svg class="icon" viewBox="0 0 24 24" style="color: #ffffff;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Call 108
+                        </a>
+                    </div>
+
+                    <!-- 101 Fire -->
+                    <div class="emergency-phone-card">
+                        <div>
+                            <span class="badge badge-emergency" style="margin-bottom: var(--space-2);">Fire Services</span>
+                            <div class="emergency-number">101</div>
+                            <div style="font-size: var(--font-size-body); font-weight: 600;">Fire & Rescue</div>
+                            <p style="font-size: var(--font-size-caption); color: var(--color-text-secondary); margin-top: var(--space-2);">
+                                Emergency fire control, entrapment assistance, and structural rescue.
+                            </p>
+                        </div>
+                        <a href="tel:101" class="btn btn-emergency btn-lg btn-full" aria-label="Call 101 Fire">
+                            <svg class="icon" viewBox="0 0 24 24" style="color: #ffffff;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Call 101
+                        </a>
+                    </div>
+
+                    <!-- 100 Police -->
+                    <div class="emergency-phone-card">
+                        <div>
+                            <span class="badge badge-emergency" style="margin-bottom: var(--space-2);">Police Services</span>
+                            <div class="emergency-number">100</div>
+                            <div style="font-size: var(--font-size-body); font-weight: 600;">Police Helpline</div>
+                            <p style="font-size: var(--font-size-caption); color: var(--color-text-secondary); margin-top: var(--space-2);">
+                                Immediate law enforcement response, crime reporting, and distress calls.
+                            </p>
+                        </div>
+                        <a href="tel:100" class="btn btn-emergency btn-lg btn-full" aria-label="Call 100 Police">
+                            <svg class="icon" viewBox="0 0 24 24" style="color: #ffffff;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Call 100
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- ============================================================
+                     5 First-Aid Cards with Short Numbered Steps
+                     ============================================================ -->
+                <div style="margin-top: var(--space-12);">
+                    <div class="section-header">
+                        <h2 class="section-heading" style="font-size: 1.5rem;">Basic First-Aid Knowledge</h2>
+                        <p class="section-subheading">General instructions while professional emergency services are en route.</p>
+                    </div>
+
+                    <div class="first-aid-grid">
+                        
+                        <!-- 1. Burns -->
+                        <div class="first-aid-card">
+                            <h4>
+                                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-emergency);"><path d="M12 2c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg>
+                                Burns First-Aid
+                            </h4>
+                            <ol class="first-aid-steps">
+                                <li>Immediately cool the burn under running cool tap water for 10 to 20 minutes.</li>
+                                <li>Do not apply ice, butter, toothpaste, or greasy ointments to the area.</li>
+                                <li>Remove tight jewelry or restrictive clothing before swelling develops.</li>
+                                <li>Cover loosely with a clean, dry, non-stick dressing or clean plastic wrap.</li>
+                            </ol>
+                        </div>
+
+                        <!-- 2. CPR -->
+                        <div class="first-aid-card">
+                            <h4>
+                                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-emergency);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                Adult CPR
+                            </h4>
+                            <ol class="first-aid-steps">
+                                <li>Check responsiveness and breathing. Call 108 immediately.</li>
+                                <li>Place heel of one hand in center of chest; interlock other hand on top.</li>
+                                <li>Push hard and fast: 100 to 120 compressions per minute at 2 inches depth.</li>
+                                <li>Allow chest to recoil completely between compressions until help arrives.</li>
+                            </ol>
+                        </div>
+
+                        <!-- 3. Choking -->
+                        <div class="first-aid-card">
+                            <h4>
+                                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+                                Choking Response
+                            </h4>
+                            <ol class="first-aid-steps">
+                                <li>Encourage the person to cough if they are still able to make sounds.</li>
+                                <li>If airway is blocked, stand behind them and lean them slightly forward.</li>
+                                <li>Deliver 5 firm back blows between shoulder blades with heel of hand.</li>
+                                <li>If unrelieved, perform 5 upward abdominal thrusts (Heimlich maneuver).</li>
+                            </ol>
+                        </div>
+
+                        <!-- 4. Fracture -->
+                        <div class="first-aid-card">
+                            <h4>
+                                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><line x1="5" y1="19" x2="19" y2="5"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/></svg>
+                                Suspected Fracture
+                            </h4>
+                            <ol class="first-aid-steps">
+                                <li>Keep the injured limb still. Do not attempt to straighten the bone.</li>
+                                <li>Support and immobilize the area using a soft splint or folded towel.</li>
+                                <li>Apply an ice pack wrapped in cloth to reduce swelling (avoid direct ice).</li>
+                                <li>Await professional transport and medical evaluation.</li>
+                            </ol>
+                        </div>
+
+                        <!-- 5. Bleeding -->
+                        <div class="first-aid-card">
+                            <h4>
+                                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-emergency);"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                                Bleeding Control
+                            </h4>
+                            <ol class="first-aid-steps">
+                                <li>Apply firm, steady direct pressure over wound using a clean cloth or pad.</li>
+                                <li>Keep constant pressure on the site without lifting the cloth to check.</li>
+                                <li>If blood soaks through, place another cloth on top without removing first.</li>
+                                <li>Have person rest comfortably lying down while waiting for an ambulance.</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Master Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-2);">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+            </a>
+
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find_care.html">Find Care</a></li>
+                <li><a href="camps.html">Health Camps</a></li>
+                <li><a href="blood_donors.html">Blood Donors</a></li>
+                <li><a href="emergency.html">Emergency Numbers</a></li>
+                <li><a href="auth.html">Account</a></li>
+            </ul>
+
+            <!-- Required Medical Disclaimer -->
+            <p class="footer-disclaimer">
+                CareFlow shares general information only and is not a substitute for professional medical advice.
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 CareFlow. Designed for independent, community-first healthcare accessibility.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+

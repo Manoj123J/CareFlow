@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Health Camps Directory — CareFlow</title>
+    <meta name="description" content="Discover upcoming free health checkup camps, eye screenings, and diagnostic drives verified by phone.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Accessible skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sticky Translucent Glass Navigation Bar -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="CareFlow Home">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+                <span class="nav-brand-badge">Companion</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle (44x44px min tap target) -->
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="primary-nav" aria-label="Primary Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="find_care.html" class="nav-link">Find Care</a></li>
+                    <li><a href="camps.html" class="nav-link is-active">Health Camps</a></li>
+                    <li><a href="blood_donors.html" class="nav-link">Blood Donors</a></li>
+                    <li><a href="emergency.html" class="nav-link nav-link--emergency">Emergency</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section" style="padding-top: var(--space-12);">
+            <div class="container">
+                
+                <!-- Header & Top Actions -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-6);">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2);">
+                            <h1 class="section-heading" style="margin-bottom: 0;">Community Health Camps</h1>
+                            <span class="badge badge-sample">Sample Data</span>
+                        </div>
+                        <p class="section-subheading">
+                            Explore upcoming free health screenings, eye checkups, and diagnostic drives verified by phone.
+                        </p>
+                    </div>
+                    <div>
+                        <button type="button" id="open-submit-modal-btn" class="btn btn-primary btn-sm">
+                            <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Submit a Camp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="camps-filter-bar">
+                    <!-- City Filter -->
+                    <div class="form-group" style="flex: 1 1 200px; margin-bottom: 0;">
+                        <label for="filter-city" class="form-label">City</label>
+                        <select id="filter-city" class="form-select">
+                            <option value="all">All Cities</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Mumbai">Mumbai</option>
+                        </select>
+                    </div>
+
+                    <!-- Date Filter -->
+                    <div class="form-group" style="flex: 1 1 200px; margin-bottom: 0;">
+                        <label for="filter-date" class="form-label">Filter by Date</label>
+                        <input type="date" id="filter-date" class="form-input">
+                    </div>
+
+                    <!-- Saved Only Filter -->
+                    <div style="display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding-bottom: 4px;">
+                        <label class="form-checkbox-label" style="padding-top: 0;">
+                            <input type="checkbox" id="filter-saved-only">
+                            <span>Saved camps only</span>
+                        </label>
+                    </div>
+
+                    <!-- Reset Filters -->
+                    <div>
+                        <button type="button" id="reset-filters-btn" class="btn btn-secondary btn-sm" style="min-height: 44px;">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Camps Results Count -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                    <span id="camps-count" style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary); font-weight: 500;">
+                        Loading upcoming camps...
+                    </span>
+                </div>
+
+                <!-- Camps Grid -->
+                <div class="grid-12" id="camps-list-grid">
+                    <!-- Dynamically populated via script -->
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ====================================================================
+         Report Camp Modal Dialog
+         ==================================================================== -->
+    <div id="report-dialog" class="dialog-backdrop" role="dialog" aria-modal="true" aria-labelledby="report-dialog-title">
+        <div class="dialog-box">
+            <div class="dialog-header">
+                <h3 class="dialog-title" id="report-dialog-title">Report Camp Listing</h3>
+                <button type="button" class="dialog-close" id="close-report-dialog" aria-label="Close dialog">&times;</button>
+            </div>
+            <div>
+                <p id="report-camp-name" style="font-size: var(--font-size-body-sm); color: var(--color-text); font-weight: 600; margin-bottom: var(--space-4);"></p>
+                <div class="form-group">
+                    <label for="report-reason" class="form-label">Reason for Report *</label>
+                    <select id="report-reason" class="form-select">
+                        <option value="Incorrect venue address">Incorrect venue address</option>
+                        <option value="Camp rescheduled or cancelled">Camp rescheduled or cancelled</option>
+                        <option value="Phone number unreachable">Phone number unreachable</option>
+                        <option value="Commercial fees charged at free camp">Commercial fees charged at free camp</option>
+                        <option value="Other concern">Other concern</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="report-notes" class="form-label">Additional Details (Optional)</label>
+                    <textarea id="report-notes" class="form-textarea" placeholder="Describe the discrepancy..."></textarea>
+                </div>
+            </div>
+            <div class="dialog-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="cancel-report-btn">Cancel</button>
+                <button type="button" class="btn btn-emergency btn-sm" id="submit-report-btn">Submit Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         Submit a Camp Modal Form
+         ==================================================================== -->
+    <div id="submit-camp-dialog" class="dialog-backdrop" role="dialog" aria-modal="true" aria-labelledby="submit-dialog-title">
+        <div class="dialog-box" style="max-width: 560px;">
+            <div class="dialog-header">
+                <h3 class="dialog-title" id="submit-dialog-title">Submit Free Health Camp</h3>
+                <button type="button" class="dialog-close" id="close-submit-dialog" aria-label="Close dialog">&times;</button>
+            </div>
+            
+            <!-- Mandatory Phone Verification Notice -->
+            <div class="alert alert-verified" style="margin-bottom: var(--space-4);" role="note">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <div>
+                    <strong>Notice:</strong> Listings are verified by phone before they are published.
+                </div>
+            </div>
+
+            <form id="submit-camp-form">
+                <div class="form-group">
+                    <label for="new-camp-title" class="form-label">Camp Title / Focus *</label>
+                    <input type="text" id="new-camp-title" class="form-input" placeholder="e.g. Free Eye Screening & Dental Checkup" required>
+                    <span id="err-camp-title" class="form-error">Please enter the camp title.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="new-camp-organizer" class="form-label">Organizer Name *</label>
+                    <input type="text" id="new-camp-organizer" class="form-input" placeholder="e.g. Rotary Club & Dr. Mohan Clinic" required>
+                    <span id="err-camp-organizer" class="form-error">Please enter the organizer name.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="new-camp-phone" class="form-label">Contact Number (For Phone Verification) *</label>
+                    <input type="tel" id="new-camp-phone" class="form-input" placeholder="+91 98765 43210" required>
+                    <span class="form-hint">Our verification team will call this number before publishing.</span>
+                    <span id="err-camp-phone" class="form-error">Please provide a valid contact number.</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                    <div class="form-group">
+                        <label for="new-camp-date" class="form-label">Date *</label>
+                        <input type="date" id="new-camp-date" class="form-input" required>
+                        <span id="err-camp-date" class="form-error">Please select a valid future date.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-camp-time" class="form-label">Time *</label>
+                        <input type="text" id="new-camp-time" class="form-input" placeholder="09:00 AM - 02:00 PM" required>
+                        <span id="err-camp-time" class="form-error">Please provide operating hours.</span>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                    <div class="form-group">
+                        <label for="new-camp-city" class="form-label">City *</label>
+                        <input type="text" id="new-camp-city" class="form-input" placeholder="e.g. Bangalore" required>
+                        <span id="err-camp-city" class="form-error">Please enter the city.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-camp-address" class="form-label">Venue Address *</label>
+                        <input type="text" id="new-camp-address" class="form-input" placeholder="Community Hall, 4th Block" required>
+                        <span id="err-camp-address" class="form-error">Please enter the venue address.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="new-camp-services" class="form-label">Services Offered *</label>
+                    <input type="text" id="new-camp-services" class="form-input" placeholder="e.g. Vision Testing, Dental Check, BP & Sugar" required>
+                    <span class="form-hint">Separate multiple services with commas.</span>
+                    <span id="err-camp-services" class="form-error">Please list at least one service offered.</span>
+                </div>
+
+                <div class="dialog-actions">
+                    <button type="button" class="btn btn-secondary btn-sm" id="cancel-submit-camp-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Submit for Verification</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Master Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-2);">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+            </a>
+
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find_care.html">Find Care</a></li>
+                <li><a href="camps.html">Health Camps</a></li>
+                <li><a href="blood_donors.html">Blood Donors</a></li>
+                <li><a href="emergency.html">Emergency Numbers</a></li>
+                <li><a href="auth.html">Account</a></li>
+            </ul>
+
+            <!-- Required Medical Disclaimer -->
+            <p class="footer-disclaimer">
+                CareFlow shares general information only and is not a substitute for professional medical advice.
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 CareFlow. Designed for independent, community-first healthcare accessibility.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sample-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            initCampsPage();
+        });
+
+        var currentReportCampId = null;
+
+        function initCampsPage() {
+            renderCamps();
+
+            // Filter Event Listeners
+            document.getElementById('filter-city').addEventListener('change', renderCamps);
+            document.getElementById('filter-date').addEventListener('change', renderCamps);
+            document.getElementById('filter-saved-only').addEventListener('change', renderCamps);
+            document.getElementById('reset-filters-btn').addEventListener('click', function () {
+                document.getElementById('filter-city').value = 'all';
+                document.getElementById('filter-date').value = '';
+                document.getElementById('filter-saved-only').checked = false;
+                renderCamps();
+            });
+
+            // Report Dialog Listeners
+            document.getElementById('close-report-dialog').addEventListener('click', closeReportDialog);
+            document.getElementById('cancel-report-btn').addEventListener('click', closeReportDialog);
+            document.getElementById('submit-report-btn').addEventListener('click', submitReport);
+
+            // Submit Camp Modal Controls
+            var submitModal = document.getElementById('submit-camp-dialog');
+            document.getElementById('open-submit-modal-btn').addEventListener('click', function () {
+                submitModal.classList.add('is-open');
+            });
+            document.getElementById('close-submit-dialog').addEventListener('click', function () {
+                submitModal.classList.remove('is-open');
+            });
+            document.getElementById('cancel-submit-camp-btn').addEventListener('click', function () {
+                submitModal.classList.remove('is-open');
+            });
+
+            // Submit Form Handler with Inline Validation
+            var submitForm = document.getElementById('submit-camp-form');
+            submitForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var title = document.getElementById('new-camp-title').value.trim();
+                var organizer = document.getElementById('new-camp-organizer').value.trim();
+                var phone = document.getElementById('new-camp-phone').value.trim();
+                var dateVal = document.getElementById('new-camp-date').value;
+                var timeVal = document.getElementById('new-camp-time').value.trim();
+                var cityVal = document.getElementById('new-camp-city').value.trim();
+                var addressVal = document.getElementById('new-camp-address').value.trim();
+                var servicesVal = document.getElementById('new-camp-services').value.trim();
+
+                var isValid = true;
+
+                // Simple inline validation checks
+                function validateField(val, errElId) {
+                    var el = document.getElementById(errElId);
+                    if (!val) {
+                        if (el) el.classList.add('is-visible');
+                        isValid = false;
+                    } else {
+                        if (el) el.classList.remove('is-visible');
+                    }
+                }
+
+                validateField(title, 'err-camp-title');
+                validateField(organizer, 'err-camp-organizer');
+                validateField(phone, 'err-camp-phone');
+                validateField(dateVal, 'err-camp-date');
+                validateField(timeVal, 'err-camp-time');
+                validateField(cityVal, 'err-camp-city');
+                validateField(addressVal, 'err-camp-address');
+                validateField(servicesVal, 'err-camp-services');
+
+                if (!isValid) return;
+
+                var newCamp = {
+                    id: 'sub-' + Date.now(),
+                    title: title,
+                    organizer: organizer,
+                    contactNumber: phone,
+                    date: dateVal,
+                    time: timeVal,
+                    city: cityVal,
+                    address: addressVal,
+                    services: servicesVal.split(',').map(function (s) { return s.trim(); }).filter(Boolean),
+                    isVerified: false,
+                    source: 'Community submitted',
+                    status: 'pending'
+                };
+
+                CareFlow.storage.addPendingCamp(newCamp);
+                submitModal.classList.remove('is-open');
+                submitForm.reset();
+                CareFlow.showToast('Camp submitted! Listings are verified by phone before they are published.', 'success');
+            });
+        }
+
+        function renderCamps() {
+            var grid = document.getElementById('camps-list-grid');
+            var countEl = document.getElementById('camps-count');
+            if (!grid) return;
+
+            var cityFilter = document.getElementById('filter-city').value;
+            var dateFilter = document.getElementById('filter-date').value;
+            var savedOnly = document.getElementById('filter-saved-only').checked;
+
+            var allCamps = (window.CareFlowData && window.CareFlowData.camps) ? window.CareFlowData.camps : [];
+
+            // Automatic Expiration Filter: Hides camps whose date is before today
+            var validCamps = allCamps.filter(function (camp) {
+                var isFutureOrToday = !CareFlow.dateUtils.isBeforeToday(camp.date);
+                var matchesCity = (cityFilter === 'all') || (camp.city.toLowerCase() === cityFilter.toLowerCase());
+                var matchesDate = (!dateFilter) || (camp.date === dateFilter);
+                var matchesSaved = (!savedOnly) || CareFlow.storage.isCampSaved(camp.id);
+                return isFutureOrToday && matchesCity && matchesDate && matchesSaved;
+            });
+
+            // Sort ascending by date
+            validCamps.sort(function (a, b) {
+                return a.date.localeCompare(b.date);
+            });
+
+            if (countEl) {
+                countEl.textContent = validCamps.length + ' upcoming verified health camp' + (validCamps.length === 1 ? '' : 's') + ' available';
+            }
+
+            grid.innerHTML = '';
+
+            if (validCamps.length === 0) {
+                grid.innerHTML = '<div class="card card--static col-12" style="text-align: center; padding: var(--space-12);">' +
+                    '<h3 style="font-size: 1.25rem; margin-bottom: var(--space-2);">No upcoming camps found</h3>' +
+                    '<p style="color: var(--color-text-secondary); max-width: 480px; margin: 0 auto;">' +
+                    'There are no medical camps matching your current filters. Try resetting the filters or check back soon.' +
+                    '</p></div>';
+                return;
+            }
+
+            validCamps.forEach(function (camp) {
+                var card = document.createElement('div');
+                card.className = 'card col-6';
+
+                var isSaved = CareFlow.storage.isCampSaved(camp.id);
+                var servicesPills = (camp.services || []).map(function (s) {
+                    return '<span class="camp-tag">' + CareFlow.escapeHTML(s) + '</span>';
+                }).join('');
+
+                card.innerHTML = '' +
+                    '<div>' +
+                    '<div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-3); flex-wrap: wrap;">' +
+                    '<span class="badge badge-verified">Verified</span>' +
+                    '<span class="badge badge-source">' + CareFlow.escapeHTML(camp.source) + '</span>' +
+                    '</div>' +
+                    '<h3 class="card-title" style="margin-bottom: var(--space-2);">' +
+                    CareFlow.escapeHTML(camp.title) +
+                    '</h3>' +
+                    '<p style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4);">' +
+                    'Organized by ' + CareFlow.escapeHTML(camp.organizer) +
+                    '</p>' +
+                    '<div style="font-size: var(--font-size-body-sm); color: var(--color-text); margin-bottom: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">' +
+                    '<div><strong>Date:</strong> ' + CareFlow.escapeHTML(CareFlow.dateUtils.formatHumanDate(camp.date)) + ' (' + CareFlow.escapeHTML(camp.time) + ')</div>' +
+                    '<div><strong>Venue:</strong> ' + CareFlow.escapeHTML(camp.address) + ', ' + CareFlow.escapeHTML(camp.city) + '</div>' +
+                    '</div>' +
+                    '<div class="camp-tag-list">' +
+                    servicesPills +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="card-footer" style="display: flex; gap: var(--space-2); flex-wrap: wrap;">' +
+                    '<a href="tel:' + CareFlow.escapeHTML(camp.contactNumber) + '" class="btn btn-primary btn-sm" style="flex: 1 1 auto;">' +
+                    'Call ' + CareFlow.escapeHTML(camp.contactNumber) +
+                    '</a>' +
+                    '<button type="button" class="btn ' + (isSaved ? 'btn-primary' : 'btn-secondary') + ' btn-sm save-camp-btn" data-id="' + camp.id + '" style="min-width: 90px;">' +
+                    (isSaved ? 'Saved' : 'Save') +
+                    '</button>' +
+                    '<button type="button" class="btn btn-outline btn-sm report-camp-btn" data-id="' + camp.id + '" data-title="' + CareFlow.escapeHTML(camp.title) + '" style="min-width: 80px;">' +
+                    'Report' +
+                    '</button>' +
+                    '</div>';
+                grid.appendChild(card);
+            });
+
+            // Save / Bookmark Event Handlers
+            grid.querySelectorAll('.save-camp-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var id = btn.getAttribute('data-id');
+                    var nowSaved = CareFlow.storage.toggleSaveCamp(id);
+                    btn.className = 'btn ' + (nowSaved ? 'btn-primary' : 'btn-secondary') + ' btn-sm save-camp-btn';
+                    btn.textContent = nowSaved ? 'Saved' : 'Save';
+                    CareFlow.showToast(nowSaved ? 'Camp saved on this device.' : 'Camp removed from saved list.', 'info');
+                    if (document.getElementById('filter-saved-only').checked) {
+                        renderCamps();
+                    }
+                });
+            });
+
+            // Report Dialog Event Handlers
+            grid.querySelectorAll('.report-camp-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var id = btn.getAttribute('data-id');
+                    var title = btn.getAttribute('data-title');
+                    openReportDialog(id, title);
+                });
+            });
+        }
+
+        function openReportDialog(campId, campTitle) {
+            currentReportCampId = campId;
+            var label = document.getElementById('report-camp-name');
+            if (label) label.textContent = 'Listing: ' + campTitle;
+            document.getElementById('report-dialog').classList.add('is-open');
+        }
+
+        function closeReportDialog() {
+            document.getElementById('report-dialog').classList.remove('is-open');
+            currentReportCampId = null;
+        }
+
+        function submitReport() {
+            var reason = document.getElementById('report-reason').value;
+            var notes = (document.getElementById('report-notes').value || '').trim();
+
+            CareFlow.storage.addReport({
+                id: 'rep-' + Date.now(),
+                campId: currentReportCampId,
+                reason: reason,
+                notes: notes,
+                reportedAt: 'Just now'
+            });
+
+            closeReportDialog();
+            document.getElementById('report-notes').value = '';
+            CareFlow.showToast('Report submitted. Our moderation team will verify this listing.', 'info');
+        }
+    </script>
+</body>
+</html>

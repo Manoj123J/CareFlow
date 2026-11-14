@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Blood Donor Connect — CareFlow</title>
+    <meta name="description" content="Connect with voluntary local blood donors or register to help others in need with complete contact privacy.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Accessible skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sticky Translucent Glass Navigation Bar -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="CareFlow Home">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+                <span class="nav-brand-badge">Companion</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle (44x44px min tap target) -->
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="primary-nav" aria-label="Primary Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="find_care.html" class="nav-link">Find Care</a></li>
+                    <li><a href="camps.html" class="nav-link">Health Camps</a></li>
+                    <li><a href="blood_donors.html" class="nav-link is-active">Blood Donors</a></li>
+                    <li><a href="emergency.html" class="nav-link nav-link--emergency">Emergency</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section" style="padding-top: var(--space-12);">
+            <div class="container">
+                
+                <!-- Header -->
+                <div class="section-header section-header--center">
+                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2);">
+                        <h1 class="section-heading" style="margin-bottom: 0;">Blood Donor Connect</h1>
+                        <span class="badge badge-sample">Sample Data</span>
+                    </div>
+                    <p class="section-subheading">
+                        Connect with voluntary local blood donors or register to help others in need. All personal phone numbers are kept confidential.
+                    </p>
+
+                    <!-- Segmented Control Tab Switcher -->
+                    <div class="segmented-control" style="margin-top: var(--space-6);" role="tablist" aria-label="Blood Donor Tabs">
+                        <button type="button" class="segmented-button is-active" id="tab-btn-find" role="tab" aria-selected="true" aria-controls="tab-content-find">
+                            Find a Donor
+                        </button>
+                        <button type="button" class="segmented-button" id="tab-btn-register" role="tab" aria-selected="false" aria-controls="tab-content-register">
+                            Become a Donor
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     TAB 1: FIND A DONOR
+                     ============================================================ -->
+                <div id="tab-content-find" class="donor-tab-content is-active" role="tabpanel" aria-labelledby="tab-btn-find">
+                    
+                    <!-- Filters Toolbar -->
+                    <div class="camps-filter-bar" style="margin-bottom: var(--space-6);">
+                        <div class="form-group" style="flex: 1 1 180px; margin-bottom: 0;">
+                            <label for="filter-blood-group" class="form-label">Blood Group</label>
+                            <select id="filter-blood-group" class="form-select">
+                                <option value="all">All Blood Groups</option>
+                                <option value="O+">O Positive (O+)</option>
+                                <option value="O-">O Negative (O-)</option>
+                                <option value="A+">A Positive (A+)</option>
+                                <option value="A-">A Negative (A-)</option>
+                                <option value="B+">B Positive (B+)</option>
+                                <option value="B-">B Negative (B-)</option>
+                                <option value="AB+">AB Positive (AB+)</option>
+                                <option value="AB-">AB Negative (AB-)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="flex: 1 1 180px; margin-bottom: 0;">
+                            <label for="filter-donor-city" class="form-label">City</label>
+                            <select id="filter-donor-city" class="form-select">
+                                <option value="all">All Cities</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="flex: 2 1 240px; margin-bottom: 0;">
+                            <label for="donor-search-input" class="form-label">Search Donors</label>
+                            <input type="text" id="donor-search-input" class="form-input" placeholder="Search by name or area...">
+                        </div>
+
+                        <div>
+                            <button type="button" id="reset-donor-filters-btn" class="btn btn-secondary btn-sm" style="min-height: 44px;">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Guarantee Banner -->
+                    <div class="alert alert-info" style="margin-bottom: var(--space-6);" role="note">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div>
+                            <strong>Privacy Protected:</strong> Donor phone numbers are kept confidential and are not publicly exposed. Click <em>Request contact</em> to coordinate an emergency need.
+                        </div>
+                    </div>
+
+                    <!-- Donor Results Count -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                        <span id="donors-count" style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary); font-weight: 500;">
+                            Loading available donors...
+                        </span>
+                    </div>
+
+                    <!-- Donors Grid -->
+                    <div class="grid-12" id="donors-cards-grid">
+                        <!-- Dynamically populated via script -->
+                    </div>
+
+                </div>
+
+                <!-- ============================================================
+                     TAB 2: BECOME A DONOR
+                     ============================================================ -->
+                <div id="tab-content-register" class="donor-tab-content" role="tabpanel" aria-labelledby="tab-btn-register">
+                    
+                    <div class="card" style="max-width: 600px; margin: 0 auto; padding: var(--space-8);">
+                        <div class="card-header" style="flex-direction: column; gap: var(--space-1); margin-bottom: var(--space-4);">
+                            <h2 class="card-title">Register as a Voluntary Donor</h2>
+                            <p style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary);">
+                                Join our community registry. You can toggle your availability at any time.
+                            </p>
+                        </div>
+
+                        <!-- Mandatory Eligibility Disclaimer -->
+                        <div class="alert alert-verified" style="margin-bottom: var(--space-6);" role="note">
+                            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <div>
+                                <strong>Medical Notice:</strong> Donation eligibility is decided by blood banks and medical staff, not by this app.
+                            </div>
+                        </div>
+
+                        <form id="become-donor-form" class="form-stack" style="max-width: 100%;">
+                            <div class="form-group">
+                                <label for="reg-name" class="form-label">Full Name *</label>
+                                <input type="text" id="reg-name" class="form-input" placeholder="e.g. Priya Sharma" required>
+                                <span id="err-reg-name" class="form-error">Please enter your name.</span>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                                <div class="form-group">
+                                    <label for="reg-blood-group" class="form-label">Blood Group *</label>
+                                    <select id="reg-blood-group" class="form-select" required>
+                                        <option value="">Select Group</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                    <span id="err-reg-blood" class="form-error">Please select your blood group.</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reg-city" class="form-label">City *</label>
+                                    <input type="text" id="reg-city" class="form-input" placeholder="e.g. Bangalore" required>
+                                    <span id="err-reg-city" class="form-error">Please enter your city.</span>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);">
+                                <div class="form-group">
+                                    <label for="reg-phone" class="form-label">Phone Number (Private) *</label>
+                                    <input type="tel" id="reg-phone" class="form-input" placeholder="+91 98765 43210" required>
+                                    <span class="form-hint">Kept strictly confidential.</span>
+                                    <span id="err-reg-phone" class="form-error">Please enter a valid phone number.</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reg-last-donated" class="form-label">Last Donated Date</label>
+                                    <input type="date" id="reg-last-donated" class="form-input">
+                                    <span class="form-hint">Leave blank if you have never donated before.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: var(--space-2);">
+                                <label class="form-checkbox-label">
+                                    <input type="checkbox" id="reg-available" checked>
+                                    <span><strong>I am currently available for donation requests</strong></span>
+                                </label>
+                            </div>
+
+                            <!-- Mandatory Consent Checkbox -->
+                            <div class="form-group" style="padding-top: var(--space-2); border-top: 1px solid var(--color-border-subtle);">
+                                <label class="form-checkbox-label" style="align-items: flex-start;">
+                                    <input type="checkbox" id="reg-consent" required>
+                                    <span>
+                                        <strong>I consent</strong> to be listed as a voluntary blood donor on CareFlow. I understand that my phone number remains private until I coordinate an emergency request. *
+                                    </span>
+                                </label>
+                                <span id="err-reg-consent" class="form-error">Consent is required to register.</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full" style="margin-top: var(--space-4);">
+                                Complete Voluntary Registration
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Request Contact Confirmation Dialog -->
+    <div id="request-dialog" class="dialog-backdrop" role="dialog" aria-modal="true" aria-labelledby="request-dialog-title">
+        <div class="dialog-box">
+            <div class="dialog-header">
+                <h3 class="dialog-title" id="request-dialog-title">Contact Request Sent</h3>
+                <button type="button" class="dialog-close" id="close-request-dialog" aria-label="Close dialog">&times;</button>
+            </div>
+            <div>
+                <p id="request-confirm-msg" style="font-size: var(--font-size-body); color: var(--color-text); text-align: center; margin-bottom: var(--space-3); font-weight: 500;"></p>
+                <p style="font-size: var(--font-size-caption); color: var(--color-text-secondary); text-align: center; line-height: 1.5;">
+                    In accordance with donor privacy policies, phone numbers are not revealed publicly. The voluntary donor has been notified of this request.
+                </p>
+            </div>
+            <div class="dialog-actions" style="justify-content: center;">
+                <button type="button" class="btn btn-primary btn-sm" id="confirm-request-ok-btn">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-2);">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+            </a>
+
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find_care.html">Find Care</a></li>
+                <li><a href="camps.html">Health Camps</a></li>
+                <li><a href="blood_donors.html">Blood Donors</a></li>
+                <li><a href="emergency.html">Emergency Numbers</a></li>
+                <li><a href="auth.html">Account</a></li>
+            </ul>
+
+            <!-- Required Medical Disclaimer -->
+            <p class="footer-disclaimer">
+                CareFlow shares general information only and is not a substitute for professional medical advice.
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 CareFlow. Designed for independent, community-first healthcare accessibility.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sample-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            initDonorsPage();
+        });
+
+        function initDonorsPage() {
+            renderDonorsList();
+
+            // Tab Navigation
+            var tabFind = document.getElementById('tab-btn-find');
+            var tabReg = document.getElementById('tab-btn-register');
+            var contentFind = document.getElementById('tab-content-find');
+            var contentReg = document.getElementById('tab-content-register');
+
+            tabFind.addEventListener('click', function () {
+                tabFind.classList.add('is-active');
+                tabFind.setAttribute('aria-selected', 'true');
+                tabReg.classList.remove('is-active');
+                tabReg.setAttribute('aria-selected', 'false');
+                contentFind.classList.add('is-active');
+                contentReg.classList.remove('is-active');
+            });
+
+            tabReg.addEventListener('click', function () {
+                tabReg.classList.add('is-active');
+                tabReg.setAttribute('aria-selected', 'true');
+                tabFind.classList.remove('is-active');
+                tabFind.setAttribute('aria-selected', 'false');
+                contentReg.classList.add('is-active');
+                contentFind.classList.remove('is-active');
+            });
+
+            // Filter Event Listeners
+            document.getElementById('filter-blood-group').addEventListener('change', renderDonorsList);
+            document.getElementById('filter-donor-city').addEventListener('change', renderDonorsList);
+            document.getElementById('donor-search-input').addEventListener('input', renderDonorsList);
+            document.getElementById('reset-donor-filters-btn').addEventListener('click', function () {
+                document.getElementById('filter-blood-group').value = 'all';
+                document.getElementById('filter-donor-city').value = 'all';
+                document.getElementById('donor-search-input').value = '';
+                renderDonorsList();
+            });
+
+            // Registration Form Listener with Inline Validation
+            var regForm = document.getElementById('become-donor-form');
+            regForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var nameVal = (document.getElementById('reg-name').value || '').trim();
+                var bloodVal = document.getElementById('reg-blood-group').value;
+                var cityVal = (document.getElementById('reg-city').value || '').trim();
+                var phoneVal = (document.getElementById('reg-phone').value || '').trim();
+                var consentChecked = document.getElementById('reg-consent').checked;
+
+                var isValid = true;
+                function checkField(val, errId) {
+                    var el = document.getElementById(errId);
+                    if (!val) {
+                        if (el) el.classList.add('is-visible');
+                        isValid = false;
+                    } else {
+                        if (el) el.classList.remove('is-visible');
+                    }
+                }
+
+                checkField(nameVal, 'err-reg-name');
+                checkField(bloodVal, 'err-reg-blood');
+                checkField(cityVal, 'err-reg-city');
+                checkField(phoneVal, 'err-reg-phone');
+                checkField(consentChecked, 'err-reg-consent');
+
+                if (!isValid) return;
+
+                var newDonor = {
+                    id: 'donor-' + Date.now(),
+                    name: nameVal,
+                    bloodGroup: bloodVal,
+                    city: cityVal,
+                    available: document.getElementById('reg-available').checked,
+                    lastDonated: document.getElementById('reg-last-donated').value || 'Never',
+                    consent: true
+                };
+
+                CareFlow.storage.addPendingDonor(newDonor);
+                CareFlow.showToast('Thank you! Voluntary donor registration recorded.', 'success');
+                regForm.reset();
+
+                // Switch to donor list view
+                tabFind.click();
+                renderDonorsList();
+            });
+
+            // Request Dialog Dismissal
+            document.getElementById('close-request-dialog').addEventListener('click', closeRequestDialog);
+            document.getElementById('confirm-request-ok-btn').addEventListener('click', closeRequestDialog);
+        }
+
+        function renderDonorsList() {
+            var grid = document.getElementById('donors-cards-grid');
+            var countEl = document.getElementById('donors-count');
+            if (!grid) return;
+
+            var bloodFilter = document.getElementById('filter-blood-group').value;
+            var cityFilter = document.getElementById('filter-donor-city').value;
+            var query = (document.getElementById('donor-search-input').value || '').trim().toLowerCase();
+
+            var defaultDonors = (window.CareFlowData && window.CareFlowData.donors) ? window.CareFlowData.donors : [];
+            var localRaw = CareFlow.storage.getItem('careflow_pending_donors');
+            var localDonors = [];
+            try {
+                localDonors = localRaw ? JSON.parse(localRaw) : [];
+            } catch (e) {}
+            var allDonors = localDonors.concat(defaultDonors);
+
+            var filtered = allDonors.filter(function (donor) {
+                var matchesBlood = (bloodFilter === 'all') || (donor.bloodGroup === bloodFilter);
+                var matchesCity = (cityFilter === 'all') || (donor.city.toLowerCase() === cityFilter.toLowerCase());
+                var matchesQuery = (!query) || (donor.name.toLowerCase().indexOf(query) !== -1 || donor.city.toLowerCase().indexOf(query) !== -1);
+                return matchesBlood && matchesCity && matchesQuery;
+            });
+
+            if (countEl) {
+                countEl.textContent = filtered.length + ' voluntary donor' + (filtered.length === 1 ? '' : 's') + ' found';
+            }
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="card card--static col-12" style="text-align: center; padding: var(--space-12);">' +
+                    '<h3 style="font-size: 1.25rem; margin-bottom: var(--space-2);">No donors matching filters</h3>' +
+                    '<p style="color: var(--color-text-secondary); max-width: 460px; margin: 0 auto;">' +
+                    'Try selecting "All Blood Groups" or checking another city nearby.' +
+                    '</p></div>';
+                return;
+            }
+
+            filtered.forEach(function (donor) {
+                var card = document.createElement('div');
+                card.className = 'donor-card col-4';
+
+                var statusBadge = donor.available 
+                    ? '<span class="badge badge-verified">Available</span>'
+                    : '<span class="badge badge-source">Currently Resting</span>';
+
+                card.innerHTML = '' +
+                    '<div>' +
+                    '<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-4);">' +
+                    '<div class="blood-group-badge" aria-label="Blood Group ' + CareFlow.escapeHTML(donor.bloodGroup) + '">' +
+                    CareFlow.escapeHTML(donor.bloodGroup) +
+                    '</div>' +
+                    statusBadge +
+                    '</div>' +
+                    '<h3 style="font-size: 1.125rem; margin-bottom: var(--space-1);">' + CareFlow.escapeHTML(donor.name) + '</h3>' +
+                    '<p style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary); margin-bottom: var(--space-3);">' +
+                    'City: ' + CareFlow.escapeHTML(donor.city) +
+                    '</p>' +
+                    '<p style="font-size: var(--font-size-caption); color: var(--color-text-tertiary); margin-bottom: var(--space-4);">' +
+                    'Last donated: ' + CareFlow.escapeHTML(donor.lastDonated) +
+                    '</p>' +
+                    '</div>' +
+                    '<div class="card-footer" style="padding-top: var(--space-3);">' +
+                    '<button type="button" class="btn btn-secondary btn-sm btn-full request-contact-btn" data-name="' + CareFlow.escapeHTML(donor.name) + '" data-group="' + CareFlow.escapeHTML(donor.bloodGroup) + '">' +
+                    'Request contact' +
+                    '</button>' +
+                    '</div>';
+                grid.appendChild(card);
+            });
+
+            // Request Contact Handlers (Never reveals phone numbers!)
+            grid.querySelectorAll('.request-contact-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var name = btn.getAttribute('data-name');
+                    var group = btn.getAttribute('data-group');
+                    openRequestDialog(name, group);
+                });
+            });
+        }
+
+        function openRequestDialog(donorName, bloodGroup) {
+            var msgEl = document.getElementById('request-confirm-msg');
+            if (msgEl) {
+                msgEl.textContent = 'Emergency blood request for ' + bloodGroup + ' has been registered for ' + donorName + '.';
+            }
+            document.getElementById('request-dialog').classList.add('is-open');
+        }
+
+        function closeRequestDialog() {
+            document.getElementById('request-dialog').classList.remove('is-open');
+        }
+    </script>
+</body>
+</html>
+

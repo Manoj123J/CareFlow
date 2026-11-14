@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>CareFlow — Healthcare. Made Personal.</title>
+    <meta name="description" content="Independent personal healthcare companion to discover nearby clinics, community medical camps, and blood donors.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Accessible skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sticky Translucent Glass Navigation Bar -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="CareFlow Home">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+                <span class="nav-brand-badge">Companion</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle (44x44px min tap target) -->
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="primary-nav" aria-label="Primary Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link is-active">Home</a></li>
+                    <li><a href="find_care.html" class="nav-link">Find Care</a></li>
+                    <li><a href="camps.html" class="nav-link">Health Camps</a></li>
+                    <li><a href="blood_donors.html" class="nav-link">Blood Donors</a></li>
+                    <li><a href="emergency.html" class="nav-link nav-link--emergency">Emergency</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ================================================================
+             Hero Section
+             ================================================================ -->
+        <section class="section section--hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-badge-pill">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>Independent Community Care Companion</span>
+                </div>
+                <h1 class="hero-heading" id="hero-title">Healthcare. Made Personal.</h1>
+                <p class="hero-lead">
+                    CareFlow helps you find nearby medical facilities, discover verified community health camps, 
+                    and connect with voluntary blood donors — completely independent of hospital networks.
+                </p>
+                <div class="hero-actions">
+                    <a href="emergency.html" class="btn btn-emergency btn-lg">
+                        <svg class="icon" viewBox="0 0 24 24" style="color: #ffffff;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        Emergency Numbers
+                    </a>
+                    <a href="find_care.html" class="btn btn-primary btn-lg">
+                        <svg class="icon" viewBox="0 0 24 24" style="color: #ffffff;"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Find Care Nearby
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Three Primary Module Cards
+             ================================================================ -->
+        <section class="section" aria-labelledby="modules-title" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header section-header--center">
+                    <h2 class="section-heading" id="modules-title">Explore Core Modules</h2>
+                    <p class="section-subheading">Three modules designed for accessible, everyday community health support.</p>
+                </div>
+
+                <div class="grid-12">
+                    <!-- Module 1: Find Care -->
+                    <div class="card col-4">
+                        <div>
+                            <div class="module-icon-wrap module-icon-wrap--findcare" aria-hidden="true">
+                                <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="card-header">
+                                <h3 class="card-title">Find Care Nearby</h3>
+                                <span class="badge badge-source">Map Directory</span>
+                            </div>
+                            <p class="card-description">
+                                Locate verified neighborhood clinics, general hospitals, and 24/7 pharmacies nearby. Filter by facility type, view operating hours, and tap to call directly.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="find_care.html" class="btn btn-primary btn-full">
+                                Open Map Directory
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Module 2: Health Camps -->
+                    <div class="card col-4">
+                        <div>
+                            <div class="module-icon-wrap module-icon-wrap--camps" aria-hidden="true">
+                                <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                            </div>
+                            <div class="card-header">
+                                <h3 class="card-title">Health Camps</h3>
+                                <span class="badge badge-verified">Verified Camps</span>
+                            </div>
+                            <p class="card-description">
+                                Discover upcoming free health checkup camps, vision screenings, and pediatric wellness drives in your city. Save upcoming camps to your device and submit new camps for telephone verification.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="camps.html" class="btn btn-secondary btn-full">
+                                Browse Free Camps
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Module 3: Blood Donor Connect -->
+                    <div class="card col-4">
+                        <div>
+                            <div class="module-icon-wrap module-icon-wrap--donors" aria-hidden="true">
+                                <svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            </div>
+                            <div class="card-header">
+                                <h3 class="card-title">Blood Donor Connect</h3>
+                                <span class="badge badge-source">Privacy Protected</span>
+                            </div>
+                            <p class="card-description">
+                                Connect with voluntary blood donors across your city by blood group. Donor phone numbers remain strictly confidential, and volunteers can register with explicit consent.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="blood_donors.html" class="btn btn-secondary btn-full">
+                                Find or Become a Donor
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================
+             Upcoming Health Camps Preview (3 Cards)
+             ================================================================ -->
+        <section class="section" aria-labelledby="preview-camps-title" style="background-color: var(--color-bg-alt);">
+            <div class="container">
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-4);">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1);">
+                            <h2 class="section-heading" id="preview-camps-title" style="margin-bottom: 0;">Upcoming Free Health Camps</h2>
+                            <span class="badge badge-sample">Sample Data</span>
+                        </div>
+                        <p class="section-subheading">Upcoming community-organized health screenings verified by telephone.</p>
+                    </div>
+                    <div>
+                        <a href="camps.html" class="btn btn-outline btn-sm">
+                            View All Camps &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid-12" id="home-camps-preview">
+                    <!-- Populated dynamically via js/sample-data.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Master Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-2);">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+            </a>
+
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find_care.html">Find Care</a></li>
+                <li><a href="camps.html">Health Camps</a></li>
+                <li><a href="blood_donors.html">Blood Donors</a></li>
+                <li><a href="emergency.html">Emergency Numbers</a></li>
+                <li><a href="auth.html">Account</a></li>
+            </ul>
+
+            <!-- Required Medical Disclaimer -->
+            <p class="footer-disclaimer">
+                CareFlow shares general information only and is not a substitute for professional medical advice.
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 CareFlow. Designed for independent, community-first healthcare accessibility.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Shared Scripts -->
+    <script src="js/sample-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.getElementById('home-camps-preview');
+            if (!container) return;
+
+            var allCamps = (window.CareFlowData && window.CareFlowData.camps) ? window.CareFlowData.camps : [];
+            
+            // Filter out past camps (only camps on or after today)
+            var upcoming = allCamps.filter(function (camp) {
+                return !CareFlow.dateUtils.isBeforeToday(camp.date) && camp.status === 'verified';
+            });
+
+            // Sort ascending by date
+            upcoming.sort(function (a, b) {
+                return a.date.localeCompare(b.date);
+            });
+
+            var top3 = upcoming.slice(0, 3);
+            container.innerHTML = '';
+
+            if (top3.length === 0) {
+                container.innerHTML = '<p class="col-12" style="text-align: center; color: var(--color-text-secondary);">No upcoming camps scheduled currently.</p>';
+                return;
+            }
+
+            top3.forEach(function (camp) {
+                var card = document.createElement('div');
+                card.className = 'card col-4';
+
+                var servicesPills = (camp.services || []).map(function (s) {
+                    return '<span class="camp-tag">' + CareFlow.escapeHTML(s) + '</span>';
+                }).join('');
+
+                card.innerHTML = '' +
+                    '<div>' +
+                    '<div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-3); flex-wrap: wrap;">' +
+                    '<span class="badge badge-verified">Verified</span>' +
+                    '<span class="badge badge-source">' + CareFlow.escapeHTML(camp.source) + '</span>' +
+                    '</div>' +
+                    '<h3 class="card-title" style="font-size: 1.125rem; margin-bottom: var(--space-2);">' +
+                    CareFlow.escapeHTML(camp.title) +
+                    '</h3>' +
+                    '<p style="font-size: var(--font-size-caption); color: var(--color-text-tertiary); margin-bottom: var(--space-3);">' +
+                    'Organized by ' + CareFlow.escapeHTML(camp.organizer) +
+                    '</p>' +
+                    '<div style="font-size: var(--font-size-body-sm); color: var(--color-text); margin-bottom: var(--space-3); line-height: 1.5;">' +
+                    '<div><strong>' + CareFlow.escapeHTML(CareFlow.dateUtils.formatHumanDate(camp.date)) + '</strong></div>' +
+                    '<div>' + CareFlow.escapeHTML(camp.time) + '</div>' +
+                    '<div>' + CareFlow.escapeHTML(camp.address) + ', ' + CareFlow.escapeHTML(camp.city) + '</div>' +
+                    '</div>' +
+                    '<div class="camp-tag-list">' +
+                    servicesPills +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="card-footer">' +
+                    '<a href="camps.html" class="btn btn-secondary btn-sm btn-full">' +
+                    'Details & Call' +
+                    '</a>' +
+                    '</div>';
+                container.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
+

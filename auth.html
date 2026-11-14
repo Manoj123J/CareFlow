@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Sign In or Register — CareFlow</title>
+    <meta name="description" content="Sign in or register for CareFlow personal care companion features.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Accessible skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sticky Translucent Glass Navigation Bar -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="CareFlow Home">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+                <span class="nav-brand-badge">Companion</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle (44x44px min tap target) -->
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="primary-nav" aria-label="Primary Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="find_care.html" class="nav-link">Find Care</a></li>
+                    <li><a href="camps.html" class="nav-link">Health Camps</a></li>
+                    <li><a href="blood_donors.html" class="nav-link">Blood Donors</a></li>
+                    <li><a href="emergency.html" class="nav-link nav-link--emergency">Emergency</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary btn-sm is-active">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section" style="padding-top: var(--space-12);">
+            <div class="container">
+                
+                <!-- Demo Notice -->
+                <div class="alert alert-info" style="max-width: 480px; margin: 0 auto var(--space-6) auto;" role="note">
+                    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <div>
+                        <strong>Demonstration Notice:</strong> Client-side demo only. No real server accounts or database connections exist in this standalone frontend.
+                    </div>
+                </div>
+
+                <!-- Centered Card Container -->
+                <div class="card" style="max-width: 480px; margin: 0 auto; padding: var(--space-8);">
+                    
+                    <!-- Segmented Control Toggle -->
+                    <div style="text-align: center; margin-bottom: var(--space-6);">
+                        <div class="segmented-control" role="tablist" aria-label="Authentication Mode">
+                            <button type="button" class="segmented-button is-active" id="auth-tab-login" role="tab" aria-selected="true" aria-controls="login-form-wrap">
+                                Sign In
+                            </button>
+                            <button type="button" class="segmented-button" id="auth-tab-register" role="tab" aria-selected="false" aria-controls="register-form-wrap">
+                                Create Account
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ========================================================
+                         SIGN IN FORM
+                         ======================================================== -->
+                    <div id="login-form-wrap">
+                        <div style="text-align: center; margin-bottom: var(--space-6);">
+                            <h1 class="card-title" style="font-size: 1.5rem; margin-bottom: var(--space-2);">Welcome Back</h1>
+                            <p style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary);">
+                                Access your saved camps and personal healthcare settings.
+                            </p>
+                        </div>
+
+                        <form id="login-form" class="form-stack" style="max-width: 100%;">
+                            <div class="form-group">
+                                <label for="login-email" class="form-label">Email Address *</label>
+                                <input type="email" id="login-email" class="form-input" placeholder="name@example.com" required autocomplete="email">
+                                <span id="err-login-email" class="form-error">Please enter a valid email address.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="login-password" class="form-label">Password *</label>
+                                <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required autocomplete="current-password">
+                                <span id="err-login-password" class="form-error">Please enter your password.</span>
+                            </div>
+
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: var(--font-size-caption);">
+                                <label class="form-checkbox-label" style="padding-top: 0; min-height: auto;">
+                                    <input type="checkbox" id="login-remember">
+                                    <span>Remember this device</span>
+                                </label>
+                                <a href="#forgot" id="forgot-link" style="color: var(--color-accent);">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full" style="margin-top: var(--space-4);">
+                                Sign In
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- ========================================================
+                         REGISTER FORM
+                         ======================================================== -->
+                    <div id="register-form-wrap" style="display: none;">
+                        <div style="text-align: center; margin-bottom: var(--space-6);">
+                            <h1 class="card-title" style="font-size: 1.5rem; margin-bottom: var(--space-2);">Create Account</h1>
+                            <p style="font-size: var(--font-size-body-sm); color: var(--color-text-secondary);">
+                                Set up a free personal companion profile.
+                            </p>
+                        </div>
+
+                        <form id="register-form" class="form-stack" style="max-width: 100%;">
+                            <div class="form-group">
+                                <label for="reg-user-name" class="form-label">Full Name *</label>
+                                <input type="text" id="reg-user-name" class="form-input" placeholder="e.g. Maya Iyer" required autocomplete="name">
+                                <span id="err-reg-name" class="form-error">Please enter your name.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reg-user-email" class="form-label">Email Address *</label>
+                                <input type="email" id="reg-user-email" class="form-input" placeholder="name@example.com" required autocomplete="email">
+                                <span id="err-reg-email" class="form-error">Please enter a valid email address.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reg-user-password" class="form-label">Password (min 8 characters) *</label>
+                                <input type="password" id="reg-user-password" class="form-input" placeholder="Create a password" minlength="8" required autocomplete="new-password">
+                                <span id="err-reg-pwd" class="form-error">Password must be at least 8 characters.</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-checkbox-label" style="padding-top: 0;">
+                                    <input type="checkbox" id="reg-terms" required>
+                                    <span>I agree to the CareFlow community terms and privacy policy. *</span>
+                                </label>
+                                <span id="err-reg-terms" class="form-error">You must accept the terms.</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full" style="margin-top: var(--space-4);">
+                                Create Account
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Master Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-2);">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+            </a>
+
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find_care.html">Find Care</a></li>
+                <li><a href="camps.html">Health Camps</a></li>
+                <li><a href="blood_donors.html">Blood Donors</a></li>
+                <li><a href="emergency.html">Emergency Numbers</a></li>
+                <li><a href="auth.html">Account</a></li>
+            </ul>
+
+            <!-- Required Medical Disclaimer -->
+            <p class="footer-disclaimer">
+                CareFlow shares general information only and is not a substitute for professional medical advice.
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 CareFlow. Designed for independent, community-first healthcare accessibility.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tabLogin = document.getElementById('auth-tab-login');
+            var tabRegister = document.getElementById('auth-tab-register');
+            var wrapLogin = document.getElementById('login-form-wrap');
+            var wrapRegister = document.getElementById('register-form-wrap');
+
+            tabLogin.addEventListener('click', function () {
+                tabLogin.classList.add('is-active');
+                tabLogin.setAttribute('aria-selected', 'true');
+                tabRegister.classList.remove('is-active');
+                tabRegister.setAttribute('aria-selected', 'false');
+                wrapLogin.style.display = 'block';
+                wrapRegister.style.display = 'none';
+            });
+
+            tabRegister.addEventListener('click', function () {
+                tabRegister.classList.add('is-active');
+                tabRegister.setAttribute('aria-selected', 'true');
+                tabLogin.classList.remove('is-active');
+                tabLogin.setAttribute('aria-selected', 'false');
+                wrapRegister.style.display = 'block';
+                wrapLogin.style.display = 'none';
+            });
+
+            // Client-side mock submission handlers
+            document.getElementById('login-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var email = document.getElementById('login-email').value;
+                CareFlow.showToast('Signed in as ' + email + ' (Demonstration mode).', 'success');
+            });
+
+            document.getElementById('register-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var name = document.getElementById('reg-user-name').value;
+                CareFlow.showToast('Account registered for ' + name + '! Please sign in.', 'success');
+                tabLogin.click();
+            });
+
+            document.getElementById('forgot-link').addEventListener('click', function (e) {
+                e.preventDefault();
+                CareFlow.showToast('Password reset link sent if account exists (Demo mode).', 'info');
+            });
+        });
+    </script>
+</body>
+</html>
+

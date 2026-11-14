@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>Find Care Facilities — CareFlow</title>
+    <meta name="description" content="Discover nearby hospitals, neighborhood clinics, and 24/7 pharmacies.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Accessible skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Sticky Translucent Glass Navigation Bar -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand" aria-label="CareFlow Home">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+                <span class="nav-brand-badge">Companion</span>
+            </a>
+
+            <!-- Mobile Hamburger Toggle (44x44px min tap target) -->
+            <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="primary-nav" aria-label="Primary Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="find_care.html" class="nav-link is-active">Find Care</a></li>
+                    <li><a href="camps.html" class="nav-link">Health Camps</a></li>
+                    <li><a href="blood_donors.html" class="nav-link">Blood Donors</a></li>
+                    <li><a href="emergency.html" class="nav-link nav-link--emergency">Emergency</a></li>
+                    <li><a href="auth.html" class="btn btn-secondary btn-sm">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="section" style="padding-top: var(--space-12);">
+            <div class="container">
+                
+                <!-- Header -->
+                <div class="section-header" style="margin-bottom: var(--space-6);">
+                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2);">
+                        <h1 class="section-heading" style="margin-bottom: 0;">Find Care Facilities</h1>
+                        <span class="badge badge-sample">Sample Data</span>
+                    </div>
+                    <p class="section-subheading">
+                        Locate verified hospitals, neighborhood clinics, and 24/7 pharmacies nearby.
+                    </p>
+                </div>
+
+                <!-- Mandatory Advisory Notice -->
+                <div class="alert alert-info" style="margin-bottom: var(--space-6);" role="note">
+                    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <div>
+                        <strong>Verify before visiting:</strong> Facility hours, services, and phone numbers are subject to change. Please call ahead to confirm availability.
+                    </div>
+                </div>
+
+                <!-- Filter Toolbar -->
+                <div class="filter-toolbar">
+                    <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                        <button type="button" class="btn btn-secondary btn-sm type-filter-btn is-active" data-type="all">All Facilities</button>
+                        <button type="button" class="btn btn-secondary btn-sm type-filter-btn" data-type="hospital">Hospitals</button>
+                        <button type="button" class="btn btn-secondary btn-sm type-filter-btn" data-type="clinic">Clinics</button>
+                        <button type="button" class="btn btn-secondary btn-sm type-filter-btn" data-type="pharmacy">24/7 Pharmacies</button>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder Card -->
+                <div class="care-map-card">
+                    <h2 class="card-title" style="margin-bottom: var(--space-2);">Find care near you</h2>
+                    <p style="margin-bottom: var(--space-5); color: var(--color-text-secondary);">Map view is coming soon.</p>
+                    <!-- TODO(map): connect the real map here; the button id is open-map-btn -->
+                    <button type="button" id="open-map-btn" class="btn btn-primary">Open Map</button>
+                    <div id="map-notice" style="margin-top: var(--space-3); font-size: var(--font-size-body-sm); color: var(--color-text-secondary); min-height: 24px;" aria-live="polite"></div>
+                </div>
+
+                <!-- Directory Results List -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+                        <h2 style="font-size: 1.25rem;">Facility Results</h2>
+                        <span id="results-count" style="font-size: var(--font-size-caption); color: var(--color-text-secondary);">Loading facilities...</span>
+                    </div>
+
+                    <div id="places-results-list" class="results-list">
+                        <!-- Populated dynamically via inline script -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Master Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-content">
+            <a href="index.html" class="nav-brand" style="margin-bottom: var(--space-2);">
+                <svg class="icon" viewBox="0 0 24 24" style="color: var(--color-accent);"><path d="M12 5v14M5 12h14"/></svg>
+                <span>CareFlow</span>
+            </a>
+
+            <ul class="footer-nav" aria-label="Footer Navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find_care.html">Find Care</a></li>
+                <li><a href="camps.html">Health Camps</a></li>
+                <li><a href="blood_donors.html">Blood Donors</a></li>
+                <li><a href="emergency.html">Emergency Numbers</a></li>
+                <li><a href="auth.html">Account</a></li>
+            </ul>
+
+            <!-- Required Medical Disclaimer -->
+            <p class="footer-disclaimer">
+                CareFlow shares general information only and is not a substitute for professional medical advice.
+            </p>
+
+            <p class="footer-copy">
+                &copy; 2026 CareFlow. Designed for independent, community-first healthcare accessibility.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sample-data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. "Open Map" button friendly feedback
+            var openMapBtn = document.getElementById('open-map-btn');
+            var mapNotice = document.getElementById('map-notice');
+            var noticeTimer = null;
+
+            if (openMapBtn && mapNotice) {
+                openMapBtn.addEventListener('click', function () {
+                    if (noticeTimer) {
+                        clearTimeout(noticeTimer);
+                    }
+                    mapNotice.textContent = 'Map feature is not connected yet.';
+                    noticeTimer = setTimeout(function () {
+                        mapNotice.textContent = '';
+                    }, 4000);
+                });
+            }
+
+            // 2. Filter controls and Places results rendering
+            var currentFilterType = 'all';
+            var places = (window.CareFlowData && window.CareFlowData.places) ? window.CareFlowData.places : [];
+            var resultsContainer = document.getElementById('places-results-list');
+            var countEl = document.getElementById('results-count');
+            var filterBtns = document.querySelectorAll('.type-filter-btn');
+
+            function renderPlaces() {
+                var filtered = places.filter(function (place) {
+                    return (currentFilterType === 'all') || (place.type === currentFilterType);
+                });
+
+                if (countEl) {
+                    countEl.textContent = filtered.length + ' facilities available';
+                }
+
+                if (!resultsContainer) return;
+                resultsContainer.innerHTML = '';
+
+                if (filtered.length === 0) {
+                    var emptyCard = document.createElement('div');
+                    emptyCard.className = 'card card--static';
+                    emptyCard.style.textAlign = 'center';
+                    emptyCard.style.padding = 'var(--space-8)';
+                    emptyCard.innerHTML = '<p>No healthcare facilities found matching the selected filter.</p>' +
+                        '<p style="font-size: var(--font-size-caption); color: var(--color-text-secondary); margin-top: var(--space-2);">' +
+                        'Try selecting "All Facilities".</p>';
+                    resultsContainer.appendChild(emptyCard);
+                    return;
+                }
+
+                filtered.forEach(function (place) {
+                    var card = document.createElement('div');
+                    card.className = 'place-card';
+
+                    var typeLabel = place.type.charAt(0).toUpperCase() + place.type.slice(1);
+
+                    card.innerHTML = '' +
+                        '<div class="place-info">' +
+                        '<h4>' + CareFlow.escapeHTML(place.name) + '</h4>' +
+                        '<div class="place-meta" style="margin-top: var(--space-1);">' +
+                        '<span class="badge badge-source">' + typeLabel + '</span>' +
+                        '<span>' + place.distanceKm + ' km away</span>' +
+                        '<span>' + CareFlow.escapeHTML(place.openHours) + '</span>' +
+                        '</div>' +
+                        '<p style="font-size: var(--font-size-caption); color: var(--color-text-secondary); margin-top: var(--space-2);">' +
+                        CareFlow.escapeHTML(place.address) +
+                        '</p>' +
+                        '</div>' +
+                        '<div>' +
+                        '<a href="tel:' + CareFlow.escapeHTML(place.phone) + '" class="btn btn-outline btn-sm">' +
+                        'Call ' + CareFlow.escapeHTML(place.phone) +
+                        '</a>' +
+                        '</div>';
+                    resultsContainer.appendChild(card);
+                });
+            }
+
+            filterBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
+                    btn.classList.add('is-active');
+                    currentFilterType = btn.getAttribute('data-type');
+                    renderPlaces();
+                });
+            });
+
+            renderPlaces();
+        });
+    </script>
+</body>
+</html>
